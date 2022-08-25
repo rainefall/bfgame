@@ -7,7 +7,8 @@ int bfg_pollEvents() {
 			return 0;
 		}
 		else if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
-			switch (e.key.keysym.scancode) {
+			if (!e.key.repeat) {
+				switch (e.key.keysym.scancode) {
 				case SDL_SCANCODE_UP:
 					bfg_playerInput = bfg_playerInput ^ BFG_INTERNAL_UP;
 					break;
@@ -34,6 +35,7 @@ int bfg_pollEvents() {
 					break;
 				default:
 					break;
+				}
 			}
 		}
 	}
